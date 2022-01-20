@@ -1,5 +1,5 @@
+use crate::hlt_loop;
 use crate::{gdt, print, println};
-// use crate::hlt_loop;
 use lazy_static::lazy_static;
 use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame, PageFaultErrorCode};
 
@@ -57,7 +57,7 @@ extern "x86-interrupt" fn page_fault_handler(
   println!("Accessed Address: {:?}", Cr2::read());
   println!("Error Code: {:?}", error_code);
   println!("{:#?}", stack_frame);
-  // hlt_loop();
+  hlt_loop();
 }
 
 #[test_case]
